@@ -1,0 +1,40 @@
+
+apiVersion : apps/v1
+kind: Deployment
+metadata:
+  name: django-deployment
+  labels:
+    name: django-deployment
+spec:
+  selector:
+    matchLabels:
+      name: django-test
+  template:
+    metadata:
+      labels: 
+        name: django-test
+    spec:
+      containers:
+        - name: django-web
+          image: acostyle/django_app:latest
+          ports:
+            - containerPort: 80
+          envFrom:
+            - configMapRef:
+                name: django-config
+              
+---
+
+apiVersion: v1
+kind: Service
+metadata:
+  name: django-service
+  labels:
+    name: django-test-service
+spec:
+  selector:
+    name: django-test
+  type: NodePort
+  ports:
+    - targetPort: 80
+      port: 80 

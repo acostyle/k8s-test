@@ -1,0 +1,15 @@
+# Byte-compiled / optimized / DLL files
+__pycache__/
+*.py[cod]
+*$py.class
+
+# Unneccessary files
+minikube-linux-amd64
+docker-compose.yml
+
+# Folders
+.idea/
+backend_main_django/
+
+# K8S
+django-config.yaml
